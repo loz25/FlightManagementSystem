@@ -367,7 +367,9 @@ def view_flights():
     choice = input("\nEnter your choice (1-7): ")
     if choice == "1":
         cursor.execute("""
-      SELECT * FROM Flights
+      SELECT Flights.flight_ID, Pilots.pilot_name, Routes.departure_airport, Routes.arrival_airport, 
+             Flights.departure_datetime, Routes.duration 
+      FROM Flights
       JOIN Pilots ON Flights.pilot_ID = Pilots.pilot_ID
       JOIN Routes ON Flights.route_ID = Routes.route_ID
       ORDER BY Flights.departure_datetime
@@ -481,7 +483,7 @@ def view_pilots():
     choice = input("\nEnter your choice (1-5): ")
     if choice == "1":
         cursor.execute(
-            "SELECT * FROM Pilots"
+            "SELECT pilot_ID, pilot_name, nationality_country_ID, pilot_age FROM Pilots"
         )
         pilots = cursor.fetchall()
         print("\nAll Pilots:")
@@ -536,7 +538,8 @@ def view_airports():
     choice = input("\nEnter your choice (1-5): ")
     if choice == "1":
         cursor.execute("""
-        SELECT * FROM Airports
+        SELECT Airports.airport_ID, Airports.airport_name, Cities.city_name, Countries.country_name 
+        FROM Airports
         JOIN Cities ON Airports.city_ID = Cities.city_ID
         JOIN Countries ON Cities.country_ID = Countries.country_ID
     """)
@@ -586,7 +589,7 @@ def view_routes():
     choice = input("\nEnter your choice (1-5): ")
     if choice == "1":
         cursor.execute(
-            "SELECT * FROM Routes"
+            "SELECT route_ID, departure_airport, arrival_airport, duration FROM Routes"
         )
         routes = cursor.fetchall()
         print("\nAll Routes:")
