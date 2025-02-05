@@ -1,5 +1,6 @@
 # Importing necessary packages to run application and setting up connection to database
 # Random used to generate random duration of new flight routes
+# datetime from datetime package to keep track of flight dates and times
 
 import sqlite3
 import random
